@@ -1,11 +1,18 @@
-#!/bin/sh
+# !/bin/sh
 
-#  ci_post_clone.sh
-#  Runner
-#
-#  Created by Deep Shah on 19/07/24.
-#  
+cd ..
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install cocoapods
-pod install
+echo ">>> SETUP ENVIRONMENT"
+echo 'export GEM_HOME=$HOME/gems' >>~/.bash_profile
+echo 'export PATH=$HOME/gems/bin:$PATH' >>~/.bash_profile
+export GEM_HOME=$HOME/gems
+export PATH="$GEM_HOME/bin:$PATH"
+
+echo ">>> INSTALL BUNDLER"
+gem install bundler --install-dir $GEM_HOME
+
+echo ">>> INSTALL DEPENDENCIES"
+bundle install
+
+echo ">>> INSTALL PODS"
+bundle exec pod install
