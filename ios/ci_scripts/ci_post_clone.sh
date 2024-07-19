@@ -14,5 +14,7 @@ gem install bundler --install-dir $GEM_HOME
 echo ">>> INSTALL DEPENDENCIES"
 bundle install
 
+cd ios
+
 echo ">>> INSTALL PODS"
 bundle exec pod install
