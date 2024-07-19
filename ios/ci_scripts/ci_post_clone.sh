@@ -9,7 +9,7 @@
 cd Runner
 
 git clone https://github.com/flutter/flutter.git --depth 1 -b -stable $HOME/flutter
-export PATH='$PATH:$HOME/flutter/bin'
+export PATH='$HOME/flutter/bin:PATH'
 
 flutter precache --ios
 flutter pub get
