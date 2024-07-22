@@ -4,19 +4,29 @@
 #  Runner
 #
 #  Created by Deep Shah on 19/07/24.
-#  
+#
 
-cd Runner
+# Fail this script if any subcommand fails.
+set -e
 
-git clone https://github.com/flutter/flutter.git --depth 1 -b -stable $HOME/flutter
-export PATH='$HOME/flutter/bin:$PATH'
+# The default execution directory of this script is the ci_scripts directory.
+#cd $CI_PRIMARY_REPOSITORY_PATH # change working directory to the root of your cloned repo.
 
+# Install Flutter using git.
+git clone https://github.com/flutter/flutter.git --depth 1 -b stable $HOME/flutter
+export PATH="$PATH:$HOME/flutter/bin"
+
+# Install Flutter artifacts for iOS (--ios), or macOS (--macos) platforms.
 flutter precache --ios
+
+# Install Flutter dependencies.
 flutter pub get
 
-HOMEBREW_NO_AUTO_UPDATE=1
+# Install CocoaPods using Homebrew.
+HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
-cd ios && pod install
+# Install CocoaPods dependencies.
+cd ios && pod install # run `pod install` in the `ios` directory.
 
 exit 0
