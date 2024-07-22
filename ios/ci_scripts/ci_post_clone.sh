@@ -23,6 +23,7 @@ flutter precache --ios
 flutter pub get
 
 # Install CocoaPods using Homebrew.
+# shellcheck disable=SC2034
 HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
